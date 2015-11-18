@@ -32,6 +32,11 @@ void GameManager::run() {
 	float dt = m_Time->getGameClockDeltaSeconds();
 	InputDirection direction = m_Input->getDirection();
 	m_player.movePlayer(direction, dt);
+	for (Line& l : m_beatmap)
+	{
+		float d = l.updateDistance(dt);
+		if (d < 0.f) l.setDistance(1.f);
+	}
 }
 
 const Player* GameManager::getPlayer() {

@@ -11,8 +11,10 @@ TimeManager::~TimeManager()
 
 void TimeManager::startUp() 
 {
-	m_wallClock = new Clock();
-	m_gameClock = new Clock();
+	LARGE_INTEGER queryCounter;
+	QueryPerformanceCounter(&queryCounter);
+	m_wallClock = new Clock(queryCounter.QuadPart);
+	m_gameClock = new Clock(queryCounter.QuadPart);
 }
 
 void TimeManager::shutDown()

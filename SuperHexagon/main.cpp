@@ -62,6 +62,7 @@ int main(int argcp, char *argv[]) {
 	Clock::init();
 	gTimeManager.startUp();
 	// Set up game logic sub-system
+	Line::setSpeed(0.5f);
 	gGameManager.startUp(&gInputManager, &gTimeManager);
 	glutIdleFunc(idleFuncWrapper);
 	// Set up render sub-system
