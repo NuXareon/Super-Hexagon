@@ -11,7 +11,7 @@ public:
 	~RenderManager();
 	void startUp();
 	void shutDown();
-	void render(const Player* p, const vector<Line>& beatmap) const;
+	void render(const Player& p, const vector<Line>& beatmap) const;
 private:
 };
 

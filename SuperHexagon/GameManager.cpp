@@ -34,15 +34,33 @@ void GameManager::run() {
 	m_player.movePlayer(direction, dt);
 	for (Line& l : m_beatmap)
 	{
-		float d = l.updateDistance(dt);
-		if (d < 0.f) l.setDistance(1.f);
+		float d0, width;
+		unsigned __int8 lane;
+		l.getInfo(d0, width, lane);
+		float d1 = l.updateDistance(dt);
+		if (d0 > 0.f && d1 <= 0.f) checkCollisionKill(lane);
+
+		if (d1 < -0.1f) l.setDistance(1.f); // temporal cyclic beatmap
+		
 	}
 }
 
-const Player* GameManager::getPlayer() {
-	return &m_player;
+void GameManager::checkCollisionKill(unsigned __int8 l) {
+	float lLaneF = static_cast<float>(l);
+	float nLanes = static_cast<float>(NUMLANES + 1);
+	float lBegin = lLaneF / nLanes;
+	float lEnd = (lLaneF + 1.f) / nLanes;
+	float pPos = m_player.getPosition();
+	if (pPos > lBegin && pPos < lEnd) 
+	{
+		int a = 2;
+	}
 }
 
-const vector<Line>& GameManager::getBeatmap() {
+const Player& GameManager::getPlayer() const {
+	return m_player;
+}
+
+const vector<Line>& GameManager::getBeatmap() const{
 	return m_beatmap;
 }
