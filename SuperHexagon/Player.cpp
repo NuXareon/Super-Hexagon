@@ -3,7 +3,7 @@
 
 Player::Player() :
 m_speed(1.0f),
-m_position(0.0f),
+m_position(0.1f),
 m_width(0.02f),
 m_height(0.06f)
 {
@@ -17,6 +17,11 @@ Player::~Player()
 float Player::getPosition() const 
 {
 	return m_position;
+}
+
+void Player::setPosition(float p)
+{
+	m_position = p;
 }
 
 void Player::getDimensions(float& w, float& h) const

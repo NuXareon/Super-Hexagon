@@ -3,8 +3,8 @@
 
 float Clock::s_cyclesPerSecond;
 
-Clock::Clock(unsigned __int64 startTimeSeconds) :
-m_timeCycles(startTimeSeconds),
+Clock::Clock(unsigned __int64 startTimeCycles) :
+m_timeCycles(startTimeCycles),
 m_timeScale(1.0f),
 m_isPaused(false),
 m_lastDeltaSeconds(0.0f)
@@ -44,6 +44,12 @@ unsigned __int64 Clock::getTimeCycles() const
 float Clock::getDeltaTime() const
 {
 	return m_lastDeltaSeconds;
+}
+
+float Clock::getDeltaTime(const Clock* const c) const
+{
+	float cycleDiference = m_timeCycles - c->getTimeCycles();
+	return Clock::cyclesToSeconds(cycleDiference);
 }
 
 void Clock::setTimeScale(float scale)

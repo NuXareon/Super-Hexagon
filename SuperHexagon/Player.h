@@ -9,6 +9,7 @@ public:
 	Player();
 	~Player();
 	float getPosition() const;
+	void setPosition(float pos);
 	void getDimensions(float& w, float& h) const;
 	void movePlayer(InputDirection dir, float dt);
 private:

@@ -2,12 +2,13 @@
 class Clock
 {
 public:
-	explicit Clock(unsigned __int64 startTimeSeconds = 0.0f);
+	explicit Clock(unsigned __int64 startTimeCycles = 0);
 	~Clock();
 	static void init();
 	void update(float dtRealSeconds);
 	unsigned __int64 getTimeCycles() const;
 	float getDeltaTime() const;
+	float getDeltaTime(const Clock* const c) const;
 	void setTimeScale(float scale);
 	float getTimeScale() const;
 	void setPause(bool pause);
